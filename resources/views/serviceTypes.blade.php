@@ -1,8 +1,9 @@
 @extends('layout')
-@section('title', 'Oficina mecânica - Mecânicos')
+@section('title', 'Tipos de Serviço')
+
 @section('content')
     <div class="container mt-4 mb-4">
-        <h1 style="color: #333;">Mecânicos</h1>
+        <h1>Tipos de Serviço</h1>
 
         @if(session('success'))
             <div class="alert alert-secondary">
@@ -20,7 +21,6 @@
                         }, 1000);
                     }, 5000);
 
-                    // Configuração da barra de progresso
                     var progressBar = document.getElementById("myBar");
                     var width = 1;
                     var interval = setInterval(frame, 20);
@@ -37,26 +37,24 @@
             </div>
         @endif
 
-        <a href="{{ route('mechanics.create') }}" class="btn btn-primary mb-3" style="background-color: #555; border-color: #444;">Adicionar Mecânico</a>
+        <a href="{{ route('serviceTypes.create') }}" class="btn btn-secondary mb-3">Adicionar Tipo de Serviço</a>
 
-        <table class="table table-bordered" style="background-color: #f5f5f5;">
+        <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th class="align-middle" style="color: #555;">ID</th>
-                    <th class="align-middle" style="color: #555;">Nome</th>
-                    <th class="align-middle" style="color: #555;">Especialização</th>
-                    <th class="align-middle" style="color: #555;">Ações</th>
+                    <th class="align-middle">ID</th>
+                    <th class="align-middle">Descrição</th>
+                    <th class="align-middle">Preço</th>
+                    <th class="align-middle">Tipo</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($mechanics as $mechanic)
+                @foreach($serviceTypes as $serviceType)
                     <tr>
-                        <td class="align-middle">{{ $mechanic->idMecanico }}</td>
-                        <td class="align-middle">{{ $mechanic->nome }}</td>
-                        <td class="align-middle">{{ $mechanic->especializacao }}</td>
-                        <td class="align-middle">
-                            <!-- Adicione botões para editar e excluir conforme necessário -->
-                        </td>
+                        <td class="align-middle">{{ $serviceType->servicoId }}</td>
+                        <td class="align-middle">{{ $serviceType->descricao }}</td>
+                        <td class="align-middle">{{ $serviceType->preco }}</td>
+                        <td class="align-middle">{{ $serviceType->Tipo }}</td>
                     </tr>
                 @endforeach
             </tbody>
@@ -77,8 +75,8 @@
         .progress-bar {
             height: 100%;
             width: 1%;
-            background-color: #6e6e6e;
-            transition: width 0.3s ease; 
+            background-color: #6e6e6e; /* Cor cinza */
+            transition: width 0.3s ease;
         }
     </style>
 @endsection

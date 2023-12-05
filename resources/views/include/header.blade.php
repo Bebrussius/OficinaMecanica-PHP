@@ -22,6 +22,9 @@
             <a class="nav-link" href="{{route('mechanics')}}">Mecânicos</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="{{route('serviceTypes')}}">Serviços</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="{{route('logout')}}">Sair</a>
           </li>
         </ul>
