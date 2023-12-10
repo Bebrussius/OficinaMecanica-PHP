@@ -2,8 +2,14 @@
 @section('title', 'Oficina mecânica - Mecânicos')
 @section('content')
     <div class="container mt-4 mb-4">
-        <h1 style="color: #333;">Mecânicos</h1>
-
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <h1 class="mb-1">Mecânicos</h1>
+            </div>
+            <div class="col-md-6 text-end">
+                <a href="{{ route('mechanics.create') }}" class="btn btn-secondary">Adicionar Mecânico</a>
+            </div>
+        </div>
         @if(session('success'))
             <div class="alert alert-secondary">
                 <div class="progress-container">
@@ -36,10 +42,7 @@
                 </script>
             </div>
         @endif
-
-        <a href="{{ route('mechanics.create') }}" class="btn btn-primary mb-3" style="background-color: #555; border-color: #444;">Adicionar Mecânico</a>
-
-        <table class="table table-bordered" style="background-color: #f5f5f5;">
+        <table class="table table-bordered mt-3" style="background-color: #f5f5f5;">
             <thead>
                 <tr>
                     <th class="align-middle" style="color: #555;">ID</th>
@@ -55,30 +58,15 @@
                         <td class="align-middle">{{ $mechanic->nome }}</td>
                         <td class="align-middle">{{ $mechanic->especializacao }}</td>
                         <td class="align-middle">
-                            <!-- Adicione botões para editar e excluir conforme necessário -->
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-delete" onclick="return confirm('Tem certeza que deseja excluir este mecânico?')">
+                                <i class="fas fa-trash"></i> 
+                            </button>
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
-
-    <style>
-        .progress-container {
-            width: 100%;
-            height: 4px;
-            background-color: #f1f1f1;
-            margin-top: 10px;
-            position: absolute;
-            bottom: 0;
-            left: 0;
-        }
-
-        .progress-bar {
-            height: 100%;
-            width: 1%;
-            background-color: #6e6e6e;
-            transition: width 0.3s ease; 
-        }
-    </style>
 @endsection

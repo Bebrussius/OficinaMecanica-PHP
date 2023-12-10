@@ -70,3 +70,4 @@ Route::get('/serviceTypes', [ServiceTypeController::class, 'index'])->name('serv
 Route::get('/serviceTypes/{serviceTypes}', [ServiceTypeController::class, 'show'])->name('serviceTypes.show');
 Route::get('/serviceTypesCreate', [ServiceTypeController::class, 'create'])->name('serviceTypes.create');
 Route::post('/serviceTypes', [ServiceTypeController::class, 'store'])->name('serviceTypes.store');
+Route::delete('/serviceTypes/{id}/delete', [ServiceOrderController::class, 'destroy'])->name('serviceTypes.delete');

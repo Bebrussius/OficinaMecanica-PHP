@@ -3,7 +3,14 @@
 
 @section('content')
     <div class="container mt-4 mb-4">
-        <h1>Tipos de Serviço</h1>
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <h1 class="mb-1">Tipos de serviços</h1>
+            </div>
+            <div class="col-md-6 text-end">
+                <a href="{{ route('serviceTypes.create') }}" class="btn btn-secondary">Adicionar Tipo de Serviço</a>
+            </div>
+        </div>
 
         @if(session('success'))
             <div class="alert alert-secondary">
@@ -37,15 +44,14 @@
             </div>
         @endif
 
-        <a href="{{ route('serviceTypes.create') }}" class="btn btn-secondary mb-3">Adicionar Tipo de Serviço</a>
-
-        <table class="table table-bordered">
+        <table class="table table-bordered mt-3">
             <thead>
                 <tr>
                     <th class="align-middle">ID</th>
                     <th class="align-middle">Descrição</th>
                     <th class="align-middle">Preço</th>
                     <th class="align-middle">Tipo</th>
+                    <th class="align-middle">Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -55,28 +61,18 @@
                         <td class="align-middle">{{ $serviceType->descricao }}</td>
                         <td class="align-middle">{{ $serviceType->preco }}</td>
                         <td class="align-middle">{{ $serviceType->Tipo }}</td>
+                        <td class="align-middle" style="color: #555;">
+                            <form action="{{ route('serviceTypes.delete', $serviceType->servicoId) }}" method="post" style="display: inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-delete" onclick="return confirm('Tem certeza que deseja excluir este tipo de serviço?')">
+                                    <i class="fas fa-trash"></i> 
+                                </button>
+                            </form>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
-
-    <style>
-        .progress-container {
-            width: 100%;
-            height: 4px;
-            background-color: #f1f1f1;
-            margin-top: 10px;
-            position: absolute;
-            bottom: 0;
-            left: 0;
-        }
-
-        .progress-bar {
-            height: 100%;
-            width: 1%;
-            background-color: #6e6e6e; /* Cor cinza */
-            transition: width 0.3s ease;
-        }
-    </style>
 @endsection

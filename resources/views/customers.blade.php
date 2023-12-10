@@ -2,7 +2,14 @@
 @section('title','Oficina mecânica - Clientes')
 @section('content')
     <div class="container mt-4 mb-4">
-        <h1>Clientes</h1>
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <h1 class="mb-1">Clientes</h1>
+            </div>
+            <div class="col-md-6 text-end">
+                <a href="{{ route('customers.create') }}" class="btn btn-secondary">Adicionar Cliente</a>
+            </div>
+        </div>
 
         @if(session('success'))
             <div class="alert alert-secondary">
@@ -36,9 +43,7 @@
             </div>
         @endif
 
-        <a href="{{ route('customers.create') }}" class="btn btn-secondary mb-3">Adicionar Cliente</a>
-
-        <table class="table table-bordered">
+        <table class="table table-bordered mt-3">
             <thead>
                 <tr>
                     <th class="align-middle">ID</th>
@@ -61,7 +66,9 @@
                             <form action="{{ route('customers.destroy', $customer->idCliente) }}" method="post" style="display: inline;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-secondary" onclick="return confirm('Tem certeza que deseja excluir este cliente?')">Excluir</button>
+                                <button type="submit" class="btn btn-delete" onclick="return confirm('Tem certeza que deseja excluir este cliente?')">
+                                    <i class="fas fa-trash"></i> 
+                                </button>
                             </form>
                         </td>
                     </tr>
@@ -69,23 +76,4 @@
             </tbody>
         </table>
     </div>
-
-    <style>
-        .progress-container {
-            width: 100%;
-            height: 4px;
-            background-color: #f1f1f1;
-            margin-top: 10px;
-            position: absolute;
-            bottom: 0;
-            left: 0;
-        }
-
-        .progress-bar {
-            height: 100%;
-            width: 1%;
-            background-color: #6e6e6e; /* Cor cinza */
-            transition: width 0.3s ease;
-        }
-    </style>
 @endsection

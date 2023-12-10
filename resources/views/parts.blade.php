@@ -2,7 +2,14 @@
 @section('title', 'Oficina mecânica - Peças')
 @section('content')
     <div class="container mt-4 mb-4">
-        <h1>Peças</h1>
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <h1 class="mb-1">Peças</h1>
+            </div>
+            <div class="col-md-6 text-end">
+                <a href="{{ route('parts.create') }}" class="btn btn-secondary">Adicionar Peça</a>
+            </div>
+        </div>
 
         @if(session('success'))
             <div class="alert alert-secondary">
@@ -36,9 +43,7 @@
             </div>
         @endif
 
-        <a href="{{ route('parts.create') }}" class="btn btn-secondary mb-3">Adicionar Peça</a>
-
-        <table class="table table-bordered">
+        <table class="table table-bordered mt-3">
             <thead>
                 <tr>
                     <th class="align-middle">ID</th>
@@ -58,30 +63,15 @@
                         <td class="align-middle">{{ $part->preco }}</td>
                         <td class="align-middle">{{ $part->quantidade }}</td>
                         <td class="align-middle">
-                            <!-- Substitua '#' pelos links e rotas adequados -->
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-delete" onclick="return confirm('Tem certeza que deseja excluir esta peça?')">
+                                <i class="fas fa-trash"></i> 
+                            </button>
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
-
-    <style>
-        .progress-container {
-            width: 100%;
-            height: 4px;
-            background-color: #f1f1f1;
-            margin-top: 10px;
-            position: absolute;
-            bottom: 0;
-            left: 0;
-        }
-
-        .progress-bar {
-            height: 100%;
-            width: 1%;
-            background-color: #6e6e6e; /* Cor cinza */
-            transition: width 0.3s ease;
-        }
-    </style>
 @endsection

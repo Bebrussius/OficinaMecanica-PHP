@@ -2,42 +2,47 @@
 @section('title', 'Oficina mecânica - Ordem de serviço')
 @section('content')
     <div class="container mt-4 mb-4">
-        <h1>Ordens de Serviço</h1>
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <h1 class="mb-1">Ordens de Serviço</h1>
+            </div>
+            <div class="col-md-6 text-end">
+                <a href="{{ route('serviceOrder.create') }}" class="btn btn-secondary">Adicionar Ordem de Serviço</a>
+            </div>
+        </div>
 
         @if(session('success'))
-            <div class="alert alert-secondary">
-                <div class="progress-container">
-                    <div class="progress-bar progress-green" id="myBar"></div>
-                </div>
-                {{ session('success') }}
-                <script>
-                    setTimeout(function () {
-                        var alert = document.querySelector('.alert');
-                        alert.style.opacity = 0;
-
-                        setTimeout(function () {
-                            alert.style.display = 'none';
-                        }, 1000);
-                    }, 5000);
-
-                    // Configuração da barra de progresso
-                    var progressBar = document.getElementById("myBar");
-                    var width = 1;
-                    var interval = setInterval(frame, 20);
-
-                    function frame() {
-                        if (width >= 100) {
-                            clearInterval(interval);
-                        } else {
-                            width++;
-                            progressBar.style.width = width + '%';
-                        }
-                    }
-                </script>
+        <div class="alert alert-secondary">
+            <div class="progress-container">
+                <div class="progress-bar progress-green" id="myBar"></div>
             </div>
+            {{ session('success') }}
+            <script>
+                setTimeout(function () {
+                    var alert = document.querySelector('.alert');
+                    alert.style.opacity = 0;
+        
+                    setTimeout(function () {
+                        alert.style.display = 'none';
+                    }, 1000);
+                }, 5000);
+        
+                // Configuração da barra de progresso
+                var progressBar = document.getElementById("myBar");
+                var width = 1;
+                var interval = setInterval(frame, 20);
+        
+                function frame() {
+                    if (width >= 100) {
+                        clearInterval(interval);
+                    } else {
+                        width++;
+                        progressBar.style.width = width + '%';
+                    }
+                }
+            </script>
+        </div>
         @endif
-
-        <a href="{{ route('serviceOrder.create') }}" class="btn btn-secondary">Adicionar Ordem de Serviço</a>
 
         <table class="table table-bordered mt-3">
             <thead>
@@ -64,7 +69,9 @@
                             <form action="{{ route('serviceOrder.delete', $serviceOrder->idOrdem) }}" method="post" style="display: inline;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-secondary" onclick="return confirm('Tem certeza que deseja excluir esta ordem de serviço?')">Excluir</button>
+                                <button type="submit" class="btn btn-delete" onclick="return confirm('Tem certeza que deseja excluir esta ordem de serviço?')">
+                                    <i class="fas fa-trash"></i> 
+                                </button>
                             </form>
                         </td>
                     </tr>
@@ -72,25 +79,4 @@
             </tbody>
         </table>
     </div>
-
-
-</div>
-    <style>
-        .progress-container {
-            width: 100%;
-            height: 4px;
-            background-color: #f1f1f1;
-            margin-top: 10px;
-            position: absolute;
-            bottom: 0;
-            left: 0;
-        }
-
-        .progress-bar {
-            height: 100%;
-            width: 1%;
-            background-color: #6e6e6e;
-            transition: width 0.3s ease;
-        }
-    </style>
 @endsection
