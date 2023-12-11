@@ -19,7 +19,7 @@ class ServiceOrder extends Model
         'idMecanico',
         'servicoId',
         'idPeca',
-        'defeito', // Certifique-se de incluir a coluna defeito aqui
+        'defeito',
     ];
 
     public function customer()

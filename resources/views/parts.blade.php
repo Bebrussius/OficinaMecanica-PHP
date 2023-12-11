@@ -63,11 +63,13 @@
                         <td class="align-middle">{{ $part->preco }}</td>
                         <td class="align-middle">{{ $part->quantidade }}</td>
                         <td class="align-middle">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-delete" onclick="return confirm('Tem certeza que deseja excluir esta peça?')">
-                                <i class="fas fa-trash"></i> 
-                            </button>
+                            <form action="{{ route('parts.delete', $part->idPeca) }}" method="post" style="display: inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-delete" onclick="return confirm('Tem certeza que deseja excluir esta peça?')">
+                                    <i class="fas fa-trash"></i> 
+                                </button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach

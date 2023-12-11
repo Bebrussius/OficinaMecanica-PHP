@@ -58,11 +58,13 @@
                         <td class="align-middle">{{ $mechanic->nome }}</td>
                         <td class="align-middle">{{ $mechanic->especializacao }}</td>
                         <td class="align-middle">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-delete" onclick="return confirm('Tem certeza que deseja excluir este mecânico?')">
-                                <i class="fas fa-trash"></i> 
-                            </button>
+                            <form action="{{ route('mechanics.delete', $mechanic->idMecanico) }}" method="post" style="display: inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-delete" onclick="return confirm('Tem certeza que deseja excluir este mecânico?')">
+                                    <i class="fas fa-trash"></i> 
+                                </button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach

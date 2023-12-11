@@ -14,5 +14,8 @@ class Part extends Model
     protected $primaryKey = 'idPeca'; // Defina a chave primária conforme necessário
     protected $fillable = ['nome', 'descricao', 'preco', 'quantidade'];
 
-    // Outras relações ou métodos conforme necessário
+    public function serviceOrders()
+    {
+        return $this->hasMany(ServiceOrder::class, 'idPeca'); // Replace 'part_id' with your actual foreign key column name
+    }
 }

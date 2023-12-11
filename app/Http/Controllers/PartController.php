@@ -32,5 +32,14 @@ class PartController extends Controller
         return redirect()->route('parts')->with('success', 'Peça adicionada com sucesso!');
     }
 
-    // Outras funções para editar e excluir peças
+    public function destroy($id)
+{
+    $part = Part::findOrFail($id);
+
+    $part->serviceOrders()->delete();
+
+    $part->delete();
+
+    return redirect()->route('parts')->with('success', 'Peça excluída com sucesso!');
+}
 }

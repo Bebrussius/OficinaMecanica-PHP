@@ -17,4 +17,9 @@ class ServiceType extends Model
         'preco',
         'Tipo',
     ];
+
+    public function serviceOrders()
+    {
+        return $this->hasMany(ServiceOrder::class, 'idPeca'); // Replace 'part_id' with your actual foreign key column name
+    }
 }

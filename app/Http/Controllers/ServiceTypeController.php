@@ -32,4 +32,15 @@ class ServiceTypeController extends Controller
 
         return redirect()->route('serviceTypes')->with('success', 'Tipo de Serviço adicionado com sucesso!');
     }
+
+    public function destroy($id)
+{
+    $serviceType = ServiceType::findOrFail($id);
+
+    $serviceType->serviceOrders()->delete();
+
+    $serviceType->delete();
+
+    return redirect()->route('serviceTypes')->with('success', 'Tipo de serviço excluído com sucesso!');
+}
 }

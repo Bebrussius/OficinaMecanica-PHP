@@ -11,12 +11,17 @@ class Vehicle extends Model
 
     protected $table = ("veiculos");
 
-    protected $primaryKey = 'idVeiculo'; // Se necessário, ajuste conforme sua tabela
+    protected $primaryKey = 'idVeiculo';
     protected $fillable = ['marca', 'modelo', 'ano', 'placa', 'idCliente'];
 
     // Relacionamento com Clientes
     public function customer()
     {
         return $this->belongsTo(Customer::class, 'idCliente');
+    }
+
+    public function serviceOrders()
+    {
+        return $this->hasMany(ServiceOrder::class, 'idVeiculo');
     }
 }

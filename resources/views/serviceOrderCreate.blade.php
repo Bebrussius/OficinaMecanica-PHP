@@ -1,4 +1,3 @@
-<!-- resources/views/serviceOrderCreate.blade.php -->
 @extends('layout')
 @section('title', 'Nova Ordem de Serviço')
 
@@ -64,7 +63,7 @@
                 <textarea name="defeito" class="form-control" required></textarea>
             </div>
 
-            <button type="submit" class="btn btn-primary mt-3">Criar Ordem de Serviço</button>
+            <button type="submit" class="btn btn-secondary mt-3">Criar Ordem de Serviço</button>
         </form>
     </div>
 @endsection

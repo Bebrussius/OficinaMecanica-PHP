@@ -27,7 +27,6 @@
                     }, 1000);
                 }, 5000);
         
-                // Configuração da barra de progresso
                 var progressBar = document.getElementById("myBar");
                 var width = 1;
                 var interval = setInterval(frame, 20);
@@ -60,17 +59,25 @@
                 @foreach($serviceOrders as $serviceOrder)
                     <tr>
                         <td class="align-middle" style="color: #555;">{{ $serviceOrder->idOrdem }}</td>
-                        <td class="align-middle" style="color: #555;">{{ $serviceOrder->customer->nome }}</td>
-                        <td class="align-middle" style="color: #555;">{{ $serviceOrder->vehicle->modelo }} (Placa: {{ $serviceOrder->vehicle->placa }})</td>
+                        
+                        <td class="align-middle" style="color: #555;">{{ optional($serviceOrder->customer)->nome }}</td>
+            
+                        <td class="align-middle" style="color: #555;">
+                            {{ optional($serviceOrder->vehicle)->modelo }} (Placa: {{ optional($serviceOrder->vehicle)->placa }})
+                        </td>
+            
                         <td class="align-middle" style="color: #555;">{{ $serviceOrder->defeito}}</td>
-                        <td class="align-middle" style="color: #555;">{{ $serviceOrder->mechanic->nome }}</td>
+            
+                        <td class="align-middle" style="color: #555;">{{ optional($serviceOrder->mechanic)->nome }}</td>
+            
                         <td class="align-middle" style="color: #555;">{{ $serviceOrder->dataEntrada }}</td>
+            
                         <td class="align-middle" style="color: #555;">
                             <form action="{{ route('serviceOrder.delete', $serviceOrder->idOrdem) }}" method="post" style="display: inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-delete" onclick="return confirm('Tem certeza que deseja excluir esta ordem de serviço?')">
-                                    <i class="fas fa-trash"></i> 
+                                    <i class="fas fa-trash"></i>
                                 </button>
                             </form>
                         </td>

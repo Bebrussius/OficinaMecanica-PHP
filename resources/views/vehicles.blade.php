@@ -63,13 +63,15 @@
                         <td class="align-middle">{{ $vehicle->modelo }}</td>
                         <td class="align-middle">{{ $vehicle->ano }}</td>
                         <td class="align-middle">{{ $vehicle->placa }}</td>
-                        <td class="align-middle">{{ $vehicle->customer->nome }}</td>
+                        <td class="align-middle">{{ optional($vehicle->customer)->nome }}</td>
                         <td class="align-middle">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-delete" onclick="return confirm('Tem certeza que deseja excluir este veículo?')">
-                                <i class="fas fa-trash"></i> 
-                            </button>
+                            <form action="{{ route('vehicles.delete', $vehicle->idVeiculo) }}" method="post" style="display: inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-delete" onclick="return confirm('Tem certeza que deseja excluir este veículo?')">
+                                    <i class="fas fa-trash"></i> 
+                                </button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach

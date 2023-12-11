@@ -37,5 +37,14 @@ class VehicleController extends Controller
         return redirect()->route('vehicles')->with('success', 'Veículo adicionado com sucesso!');
     }
 
-    // Outras funções para editar e excluir veículos
+    public function destroy($id)
+{
+    $vechicle = Vehicle::findOrFail($id);
+
+    $vechicle->serviceOrders()->delete();
+
+    $vechicle->delete();
+
+    return redirect()->route('vehicles')->with('success', 'Veículo excluido com sucesso!');
+}
 }

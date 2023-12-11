@@ -23,7 +23,7 @@ class AuthManager extends Controller
 
         $credentials = $request->only('email', 'password');
         if(Auth::attempt($credentials)){
-            return redirect()->intended(route('home'));
+            return redirect()->intended(route('serviceOrder'));
         }
         return redirect(route('login'))->with("error", "Desculpe, parece que houve um erro no login. Verifique se o seu email e senha estão corretos e tente novamente.");
     }

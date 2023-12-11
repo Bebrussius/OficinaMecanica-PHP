@@ -42,8 +42,21 @@ class CustomerController extends Controller
     public function destroy($id)
 {
     $customer = Customer::findOrFail($id);
+
+    // Update the idCliente to NULL for each vehicle associated with the customer
+    foreach ($customer->vehicles as $vehicle) {
+        $vehicle->update(['idCliente' => null]);
+
+        // Update the idVeiculo to NULL for each service order associated with the vehicle
+        $vehicle->serviceOrders()->update(['idVeiculo' => null]);
+    }
+
+    // Update the idCliente to NULL for each service order associated with the customer
+    $customer->serviceOrders()->update(['idCliente' => null]);
+
+    // Now you can delete the customer
     $customer->delete();
 
-    return redirect()->route('customers.index')->with('success', 'Cliente excluído com sucesso!');
+    return redirect()->route('customers')->with('success', 'Cliente excluído com sucesso!');
 }
 }

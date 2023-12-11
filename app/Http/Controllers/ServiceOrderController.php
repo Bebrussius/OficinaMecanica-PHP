@@ -69,15 +69,15 @@ class ServiceOrderController extends Controller
     }
 
     public function destroy($id)
-    {
-        $hasOrders = ServiceOrder::where('idCliente', $id)->exists();
+{
+    $serviceOrder = ServiceOrder::find($id);
 
-        if ($hasOrders) {
-            return redirect()->route('customers')->with('error', 'Não é possível excluir o cliente enquanto houver ordens de serviço associadas.');
-        }
-
-        Customer::destroy($id);
-
-        return redirect()->route('customers')->with('success', 'Cliente excluído com sucesso!');
+    if (!$serviceOrder) {
+        return redirect()->route('serviceOrder')->with('error', 'Ordem de serviço não encontrada.');
     }
+
+    $serviceOrder->delete();
+
+    return redirect()->route('serviceOrder')->with('success', 'Ordem de serviço excluída com sucesso!');
+}
 }

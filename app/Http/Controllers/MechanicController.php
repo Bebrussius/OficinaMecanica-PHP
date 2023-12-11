@@ -37,6 +37,15 @@ class MechanicController extends Controller
         return redirect()->route('mechanics')->with('success', 'Mecânico adicionado com sucesso!');
     }
 
-    // Outras funções para editar e excluir mecânicos
+    public function destroy($id)
+{
+    $mechanic = Mechanic::findOrFail($id);
+
+    $mechanic->serviceOrders()->delete();
+
+    $mechanic->delete();
+
+    return redirect()->route('mechanics')->with('success', 'Mecânico excluído com sucesso!');
+}
 }
 

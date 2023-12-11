@@ -12,16 +12,15 @@
           <form action="{{ route('login.post') }}" method="POST">
             @csrf
             <div class="mb-3">
-              <label for="email" class="form-label">Email:</label>
-              <input type="email" class="form-control" id="email" name="email" required>
-              <div id="emailHelp" class="form-text">Jamais compartilharemos seu e-mail com mais ninguém.</div>
+              <label for="email" class="form-label">Nome:</label>
+              <input type="text" class="form-control" id="email" name="email" required>
             </div>
             <div class="mb-3">
               <label for="password" class="form-label">Senha:</label>
               <input type="password" class="form-control" id="password" name="password" required>
             </div>
             <div class="d-grid">
-              <button type="submit" class="btn btn-primary">Entrar</button>
+              <button type="submit" class="btn btn-secondary">Entrar</button>
             </div>
           </form>
         </div>

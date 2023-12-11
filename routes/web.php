@@ -40,9 +40,6 @@ Route::post('/registration', [AuthManager::class, 'registrationPost'])->name('re
 
 Route::get('/logout', [AuthManager::class, 'logout'])->name('logout');
 
-Route::get('/mechanics/create', [MechanicController::class, 'create'])->name('mechanics.create');
-Route::post('/mechanics', [MechanicController::class, 'store'])->name('mechanics.store');
-
 Route::get('/customers', [CustomerController::class, 'index'])->name('customers');
 Route::get('/customersCreate', [CustomerController::class, 'create'])->name('customers.create');
 Route::post('/customers', [CustomerController::class, 'store'])->name('customers.store');
@@ -51,23 +48,26 @@ Route::delete('/customers/{id}', [CustomerController::class, 'destroy'])->name('
 Route::get('/mechanics', [MechanicController::class, 'index'])->name('mechanics');
 Route::get('/mechanicsCreate', [MechanicController::class, 'create'])->name('mechanics.create');
 Route::post('/mechanics', [MechanicController::class, 'store'])->name('mechanics.store');
+Route::delete('/mechanics/{id}/delete', [MechanicController::class, 'destroy'])->name('mechanics.delete');
 
 Route::get('/vehicles', [VehicleController::class, 'index'])->name('vehicles');
 Route::get('/vehiclesCreate', [VehicleController::class, 'create'])->name('vehicles.create');
 Route::post('/vehicles', [VehicleController::class, 'store'])->name('vehicles.store');
+Route::delete('/vehicles/{id}/delete', [VehicleController::class, 'destroy'])->name('vehicles.delete');
 
 Route::get('/parts', [PartController::class, 'index'])->name('parts');
 Route::get('/partsCreate', [PartController::class, 'create'])->name('parts.create');
 Route::post('/parts', [PartController::class, 'store'])->name('parts.store');
+Route::delete('/parts/{id}/delete', [PartController::class, 'destroy'])->name('parts.delete');
 
 Route::get('/serviceOrder', [ServiceOrderController::class, 'index'])->name('serviceOrder');
 Route::get('/serviceOrder/{serviceOrder}', [ServiceOrderController::class, 'show'])->name('serviceOrder.show');
 Route::get('/serviceOrderCreate', [ServiceOrderController::class, 'create'])->name('serviceOrder.create');
 Route::post('/serviceOrder', [ServiceOrderController::class, 'store'])->name('serviceOrder.store');
-Route::delete('/service-orders/{id}/delete', [ServiceOrderController::class, 'destroy'])->name('serviceOrder.delete');
+Route::delete('/serviceOrder/{id}/delete', [ServiceOrderController::class, 'destroy'])->name('serviceOrder.delete');
 
 Route::get('/serviceTypes', [ServiceTypeController::class, 'index'])->name('serviceTypes');
 Route::get('/serviceTypes/{serviceTypes}', [ServiceTypeController::class, 'show'])->name('serviceTypes.show');
 Route::get('/serviceTypesCreate', [ServiceTypeController::class, 'create'])->name('serviceTypes.create');
 Route::post('/serviceTypes', [ServiceTypeController::class, 'store'])->name('serviceTypes.store');
-Route::delete('/serviceTypes/{id}/delete', [ServiceOrderController::class, 'destroy'])->name('serviceTypes.delete');
+Route::delete('/serviceTypes/{id}/delete', [ServiceTypeController::class, 'destroy'])->name('serviceTypes.delete');
